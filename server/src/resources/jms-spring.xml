@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring Application Context -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+default-destroy-method="destroy">
+
+
+
+  <!-- JMS ActiveMQ Connection Factory -->
+  <bean id="jmsActiveMQFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="failover:tcp://210.122.2.102:61616"/>
+        <property name="userName"  value="admin"/>
+    	<property name="password"  value="password"/>
+      </bean>
+    </property>
+  </bean>
+
+  <!--  ActiveMQ destination to use by default -->
+  <bean id="defaultDestination"
+        class="org.apache.activemq.command.ActiveMQQueue">
+    <!-- EX) [CEP_SERVICE_ID].QUEUE -->
+    <constructor-arg value="CEPSVC01.QUEUE"/>
+  </bean>
+
+  <!--  Spring JMS Template for ActiveMQ -->
+  <bean id="jmsActiveMQTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory">
+      <ref bean="jmsActiveMQFactory"/>
+    </property>
+    <property name="defaultDestination">
+      <ref bean="defaultDestination"/>
+    </property>
+  </bean>
+
+  <!-- Provides listener threads -->
+  <bean id="listenerContainer" 
+              class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+    <property name="connectionFactory" ref="jmsActiveMQFactory"/>
+    <property name="destination" ref="defaultDestination"/>
+    <property name="messageListener" ref="jmsInputAdapter"/>
+  </bean>
+
+
+  <!-- Default unmarshaller -->
+  <bean id="jmsMessageUnmarshaller" 
+              class="com.espertech.esperio.jms.JMSDefaultAnyMessageUnmarshaller"/>
+
+  <!-- Input adapter -->
+  <bean id="jmsInputAdapter" class="com.espertech.esperio.jms.SpringJMSTemplateInputAdapter">
+    <property name="jmsTemplate">
+      <ref bean="jmsActiveMQTemplate"/>
+    </property>
+    <property name="jmsMessageUnmarshaller">
+      <ref bean="jmsMessageUnmarshaller"/>
+    </property>
+  </bean>
+
+</beans>
