@@ -1,5 +1,5 @@
 # OPENMOS
-OpenMOS MTD with AAS v0.1 자산 관리 쉘 서버 개발 리포지토리
+OpenMOS MTD with AAS v0.1 자산 관리 쉘 서버 개발 보관소
 
 # 소개
 이 프로젝트는 Eclipse [BaSyx](https://wiki.eclipse.org/BaSyx)를 기반으로 Industrie 4.0 AAS(Asset Administration Shell)를 구현 한 것입니다.
