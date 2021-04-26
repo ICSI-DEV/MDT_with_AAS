@@ -1,6 +1,0 @@
-<groups xmlns="http://www.isdc.ro/wro">
-    <group name="all">
-        <css>/resources/css/bootstrap.css</css>
-        <js>/resources/js/*.js</js>
-    </group>
-</groups>       
