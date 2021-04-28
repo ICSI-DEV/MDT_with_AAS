@@ -1,0 +1,27 @@
+{
+	"kafka.host" :"192.168.0.88",
+	"kafka.port" :"9092",
+	"kafka.topic" :"pp-tag-point",
+	"kafka.thread" :"4",
+	"kafka.poll.count" :"1000",
+
+	"group.id" :"pp-plugin-opcua-server",
+	"auto.offset.reset" :"earliest",
+	"enable.auto.commit" :"false",
+	"auto.commit.interval.ms" :"1000",
+	"session.timeout.ms" :"30000",
+	"key.deserializer" :"org.apache.kafka.common.serialization.StringDeserializer",
+	"value.deserializer" :"org.apache.kafka.common.serialization.StringDeserializer",
+	"plugin.message.listener" :"plantpulse.plugin.opcua.messaging.KafkaPluginMessageListener",
+
+	"opc.ua.server.domain":"192.168.100.6",
+	"opc.ua.server.port":"8007",
+	"opc.ua.server.user":"kopens",
+	"opc.ua.server.password":"kopens",
+	"opc.ua.server.ananymous":"false",
+
+	"opc.ua.db.driver":"org.hsqldb.jdbc.JDBCDriver",
+	"opc.ua.db.url":"jdbc:hsqldb:hsql://192.168.0.88:9001/pp;shutdown=true;hsqldb.write_delay=false",
+	"opc.ua.db.user":"sa",
+	"opc.ua.db.password":"plantpulse"
+}

@@ -1,0 +1,53 @@
+<esperio-db-configuration>
+
+ <!--  
+ <jdbc-connection name="local_db">
+    <drivermanager-connection class-name="com.orientechnologies.orient.jdbc.OrientJdbcDriver"
+                        url="jdbc:orient:remote:localhost/rdp_db" 
+                        user="admin" 
+                        password="admin">
+     <connection-settings auto-commit="true" />
+     </drivermanager-connection>
+ </jdbc-connection>
+--> 
+
+ <!-- Add DML and Upsert configurations here, as below. -->
+ <!-- 
+ <dml connection="db1" 
+      stream="InsertToDBStream" 
+      name="MyInsertQuery" executor-name="queue1" retry="count">
+ <sql>insert into MyEventStore(key1, value1, value2) values (?, ?, ?)</sql>
+	 <bindings>
+		 <parameter pos="1" property="eventProperty1"/>
+		 <parameter pos="2" property="eventProperty2"/>
+		 <parameter pos="3" property="eventProperty3"/>
+	 </bindings>
+ </dml>
+  -->
+  
+  <!-- 
+  <upsert connection="db1" 
+          stream="UpdateInsertDBTableTrigger"
+          name="UpdateInsertSample" 
+          table-name="MyKeyedTable" 
+          executor-name="queue1" 
+          retry="3">
+	  <keys>
+		  <column property="eventProperty1" column="keyColumn1" type="varchar"/>
+		  <column property="eventProperty2" column="keyColumn2" type="varchar"/>
+	  </keys>
+	  <values>
+		  <column property="eventProperty3" column="valueColumn1" type="varchar"/>
+		  <column property="eventProperty4" column="valueColumn2" type="integer"/>
+	  </values>
+  </upsert>
+   -->
+   
+   <!-- 
+    #EQL 1
+    select * from pattern[every timer:interval(10)], sql:db1 ['select * from MyTable']
+    #EQL 2
+    select * from pattern[every timer:crontab(*, 8-16, *, *, *, */15)], 
+    sql:db1 ['select * from MyTable where timestamp > ${VarLastTimestamp}']
+   -->
+</esperio-db-configuration>
