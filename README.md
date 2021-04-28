@@ -32,13 +32,12 @@ git clone https://github.com/ICSI-DEV/MDT_with_AAS.git
 ```
 
 #### 3) Eclipse 실행 및 프로젝트 열기
-
+##### - import project -> Existing Projects into Workspace
 <p align="center">
-
-  <img src="https://user-images.githubusercontent.com/75360342/116350818-8a2afd80-a82d-11eb-9fde-3456ff9d5b5e.png"/>
-  
-  <p align="center">
-  
-  </p>
+  <img src="https://user-images.githubusercontent.com/75360342/116351076-f86fc000-a82d-11eb-9969-cda09905ff96.png"/>
 </p> 
 
+##### - Browse 클릭 및 Clone프로젝트 경로 지정 이후 Finish 클릭
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/75360342/116351307-6caa6380-a82e-11eb-89e3-029c1bee7ab7.png"/>
+</p> 
