@@ -1,6 +1,6 @@
 # OpenMOS_MDT with AAS 
 
-AAS Server Prototype
+AAS Server v0.1
 
 # 소개
 이 프로젝트는 Eclipse [BaSyx](https://wiki.eclipse.org/BaSyx)기반 Industrie 4.0 AAS(Asset Administration Shell)의 구현입니다.
