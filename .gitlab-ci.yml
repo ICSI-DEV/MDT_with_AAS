@@ -1,6 +1,0 @@
-build:
-  script:
-    - ant
-  artifacts:
-    paths:
-      - target/*.*
