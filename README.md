@@ -1,3 +1,4 @@
+
 # MDT_with_AAS
 
 # How to install
@@ -32,9 +33,9 @@ git clone https://github.com/ICSI-DEV/MDT_with_AAS.git
 
 #### 3) Eclipse 실행 및 프로젝트 열기
 
-<p align="center" style="color:gray">
+<p align="center">
 
-  <img style="margin:50px 0 10px 0" src="" alt="factorio thumbnail" width=200 />
+  <img src="https://user-images.githubusercontent.com/75360342/116350818-8a2afd80-a82d-11eb-9fde-3456ff9d5b5e.png"/>
   
   <p align="center">
   
