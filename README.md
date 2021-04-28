@@ -39,5 +39,7 @@ git clone https://github.com/ICSI-DEV/MDT_with_AAS.git
 
 ##### - Browse 클릭 및 Clone프로젝트 경로 지정 이후 Finish 클릭
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/75360342/116351307-6caa6380-a82e-11eb-89e3-029c1bee7ab7.png"/>
-</p> 
+  <img src="https://user-images.githubusercontent.com/75360342/116374823-9e7cf380-a849-11eb-86bb-904858750f5f.png"/>
+</>
+
+
