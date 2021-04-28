@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">  
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">  
+ 
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">   
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [SERVER] [%p] [%c{1}] [%L] %m %n"/>  
+        </layout>  
+    </appender>  
+
+    <appender name="file" class="org.apache.log4j.DailyMaxRollingFileAppender">    
+        <param name="file" value="../../log/plantpulse-server-web.log"/>  
+        <param name="Append" value="true"/>  
+        <param name="DatePattern" value="'.'yyMMdd"/>  
+        <param name="MaxBackupIndex" value="5"/>  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [SERVER] [%p] [%c{1}] [%L] %m %n"/>  
+        </layout>  
+    </appender>  
+    
+    <appender name="db" class="plantpulse.cep.engine.logging.LoggingAppender">  
+        <layout class="org.apache.log4j.PatternLayout">  
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%p] [%c{1}] [%L] %m %n"/>    
+        </layout>  
+    </appender>  
+   
+ 
+    <!-- 특정 로거 설정 -->
+    <logger name="org.json" additivity="false">
+        <level value="ERROR" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="org.springframework" additivity="false">
+        <level value="ERROR" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="org.apache.activemq" additivity="false">
+        <level value="ERROR" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+
+    <logger name="plantpulse.client.stomp" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="plantpulse.dbutils" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger>
+    
+    <logger name="plantpulse.dbutils.cassandra" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger>
+    
+    <logger name="plantpulse.dbutils.cassandra.SessionMonitor" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger>
+    
+    
+     <logger name="com.datastax.driver" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="plantpulse.cep" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="plantpulse.server" additivity="false">
+        <level value="INFO" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="plantpulse.cep.engine.storage.select.StorageSelectDAO" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="io.moquette" additivity="false">
+        <level value="ERROR" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="io.moquette.server.netty.NettyMQTTHandler" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="io.moquette.parser.netty" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger>
+    
+    <logger name="io.moquette.spi.impl.ProtocolProcessor" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger>
+    
+    <logger name="io.moquette.spi.impl.SimpleMessaging" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="org.apache.kafka" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    <logger name="org.apache.kafka.clients.consumer.RangeAssignor" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+    
+    
+    <logger name="org.apache.zookeeper" additivity="false">
+        <level value="WARN" />
+        <appender-ref ref="file" />
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </logger> 
+
+	<category name="messageLogger" additivity="false">
+         <priority value="WARN" />
+		 <appender-ref ref="file" />
+		 <appender-ref ref="db" />
+		 <appender-ref ref="console" />
+     </category>
+
+    <!-- root 로거 기본 설정 -->
+    <root>  
+        <level value="INFO"/>  
+        <appender-ref ref="file"/>  
+        <appender-ref ref="db" />
+        <appender-ref ref="console" />
+    </root>  
+    
+</log4j:configuration>  
+
