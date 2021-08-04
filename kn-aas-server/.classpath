@@ -15,10 +15,6 @@
 	<classpathentry kind="lib" path="lib/asm-debug-all-5.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/asm-tree-5.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/asm-util-5.0.3.jar"/>
-	<classpathentry kind="lib" path="lib/basyx.components.AASServer-0.1.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/basyx.components.lib-0.1.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/basyx.components.registry-0.1.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="lib/basyx.sdk-0.1.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/basyx.vabServer-0.0.1-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on-1.61.jar"/>
 	<classpathentry kind="lib" path="lib/bcprov-jdk15on-1.61.jar"/>
@@ -289,5 +285,9 @@
 	<classpathentry kind="lib" path="lib/zkclient-0.7.jar"/>
 	<classpathentry kind="lib" path="lib/zookeeper-3.4.6.jar"/>
 	<classpathentry kind="lib" path="lib/zstd-jni-1.4.5-2.jar"/>
+	<classpathentry kind="lib" path="D:/MDT_with_AAS/MDT_with_AAS/kn-aas-server/lib/basyx.components.AASServer-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/MDT_with_AAS/MDT_with_AAS/kn-aas-server/lib/basyx.components.lib-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/MDT_with_AAS/MDT_with_AAS/kn-aas-server/lib/basyx.components.registry-1.0.2.jar"/>
+	<classpathentry kind="lib" path="D:/MDT_with_AAS/MDT_with_AAS/kn-aas-server/lib/basyx.sdk-1.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

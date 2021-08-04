@@ -24,7 +24,7 @@ import org.eclipse.basyx.components.registry.configuration.BaSyxRegistryConfigur
 import org.eclipse.basyx.components.registry.configuration.RegistryBackend;
 import org.eclipse.basyx.submodel.metamodel.api.identifier.IIdentifier;
 import org.eclipse.basyx.submodel.metamodel.api.submodelelement.dataelement.IProperty;
-import org.eclipse.basyx.submodel.metamodel.map.SubModel;
+import org.eclipse.basyx.submodel.metamodel.map.Submodel;
 import org.eclipse.basyx.submodel.metamodel.map.submodelelement.dataelement.property.Property;
 
 import plantpulse.json.JSONObject;
@@ -60,12 +60,12 @@ public class AASServer {
 	private AASServerComponent aasServer = null;
 	private ConnectedAssetAdministrationShellManager manager = null;
 	
-	private Map<String, SubModel> info_submodel_map   = new HashMap<>();
-	private Map<String, SubModel> tag_submodel_map   = new HashMap<>();
-	private Map<String, SubModel> point_submodel_map = new HashMap<>();
-	private Map<String, SubModel> alarm_submodel_map = new HashMap<>();
-	private Map<String, SubModel> timeline_submodel_map = new HashMap<>();
-	private Map<String, SubModel> metadata_submodel_map = new HashMap<>();
+	private Map<String, Submodel> info_submodel_map   = new HashMap<>();
+	private Map<String, Submodel> tag_submodel_map   = new HashMap<>();
+	private Map<String, Submodel> point_submodel_map = new HashMap<>();
+	private Map<String, Submodel> alarm_submodel_map = new HashMap<>();
+	private Map<String, Submodel> timeline_submodel_map = new HashMap<>();
+	private Map<String, Submodel> metadata_submodel_map = new HashMap<>();
 	
 	
 	private DateFormat date_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -109,14 +109,14 @@ public class AASServer {
 				
 		// Create submodel
 		IIdentifier info_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + site.getSite_id() + ".INFO");
-		SubModel info_submodel = new SubModel("INFO", info_id);
-		info_submodel.addSubModelElement(new Property("ID", site.getSite_id()));
-		info_submodel.addSubModelElement(new Property("NAME", site.getSite_name()));
-		info_submodel.addSubModelElement(new Property("LAT", site.getLat()));
-		info_submodel.addSubModelElement(new Property("LNG", site.getLng()));
-		info_submodel.addSubModelElement(new Property("DESCRIPTION", site.getDescription()));
+		Submodel info_submodel = new Submodel("INFO", info_id);
+		info_submodel.addSubmodelElement(new Property("ID", site.getSite_id()));
+		info_submodel.addSubmodelElement(new Property("NAME", site.getSite_name()));
+		info_submodel.addSubmodelElement(new Property("LAT", site.getLat()));
+		info_submodel.addSubmodelElement(new Property("LNG", site.getLng()));
+		info_submodel.addSubmodelElement(new Property("DESCRIPTION", site.getDescription()));
 		// Push the Submodel to the AAS server
-		manager.createSubModel(shell.getIdentification(), info_submodel);	
+		manager.createSubmodel(shell.getIdentification(), info_submodel);	
 	};
 	
 	/**
@@ -142,76 +142,76 @@ public class AASServer {
 		
 		//0. 기본 정보 등록
 		IIdentifier info_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".INFO");
-		SubModel info_submodel = new SubModel("INFO", info_id);
-		info_submodel.addSubModelElement(new Property("ID", passet.getAsset_id()));
-		info_submodel.addSubModelElement(new Property("NAME", passet.getAsset_name()));
-		info_submodel.addSubModelElement(new Property("TYPE", passet.getAsset_type()));
-		info_submodel.addSubModelElement(new Property("IMAGE",       (passet.getAsset_svg_img() == null) ? "" : passet.getAsset_svg_img()));
-		info_submodel.addSubModelElement(new Property("TABLE_TYPE",  (passet.getTable_type() == null) ? "" : passet.getTable_type()));
-		info_submodel.addSubModelElement(new Property("DESCRIPTION", passet.getDescription()));
-		info_submodel.addSubModelElement(new Property("INSERT_DATE", passet.getInsert_date()));
-		info_submodel.addSubModelElement(new Property("UPDATE_DATE", (passet.getUpdate_date() == null) ? "" : passet.getUpdate_date()));
-		manager.createSubModel(shell.getIdentification(), info_submodel);
+		Submodel info_submodel = new Submodel("INFO", info_id);
+		info_submodel.addSubmodelElement(new Property("ID", passet.getAsset_id()));
+		info_submodel.addSubmodelElement(new Property("NAME", passet.getAsset_name()));
+		info_submodel.addSubmodelElement(new Property("TYPE", passet.getAsset_type()));
+		info_submodel.addSubmodelElement(new Property("IMAGE",       (passet.getAsset_svg_img() == null) ? "" : passet.getAsset_svg_img()));
+		info_submodel.addSubmodelElement(new Property("TABLE_TYPE",  (passet.getTable_type() == null) ? "" : passet.getTable_type()));
+		info_submodel.addSubmodelElement(new Property("DESCRIPTION", passet.getDescription()));
+		info_submodel.addSubmodelElement(new Property("INSERT_DATE", passet.getInsert_date()));
+		info_submodel.addSubmodelElement(new Property("UPDATE_DATE", (passet.getUpdate_date() == null) ? "" : passet.getUpdate_date()));
+		manager.createSubmodel(shell.getIdentification(), info_submodel);
 		info_submodel_map.put(info_id.getId(), info_submodel);
 		
 		// 1. 태그 서브모델 등록
 		IIdentifier tag_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".TAG");
-		SubModel tag_submodel = new SubModel("TAG", tag_id);
+		Submodel tag_submodel = new Submodel("TAG", tag_id);
 		for(int i=0; i < tag_list.size(); i++) {
 			Tag tag = tag_list.get(i);
 			TagCacheFactory.getInstance().put(tag.getTag_id(), tag);
 			Property prop = new Property(AliasUtils.getAliasName(tag), JSONObject.fromObject(tag).toString());
-			tag_submodel.addSubModelElement(prop);
+			tag_submodel.addSubmodelElement(prop);
 			log.debug("Tag submodel property added : tag_id=["+tag.getTag_id()+"], alias_name=[" + AliasUtils.getAliasName(tag) +"]");
 		};
-		manager.createSubModel(shell.getIdentification(), tag_submodel);
+		manager.createSubmodel(shell.getIdentification(), tag_submodel);
 		tag_submodel_map.put(tag_id.getId(), tag_submodel);
 				
 		// 2. 포인트 서브모델 등록
 		IIdentifier point_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".POINT");
-		SubModel point_submodel = new SubModel("POINT", point_id);
+		Submodel point_submodel = new Submodel("POINT", point_id);
 		for(int i=0; i < tag_list.size(); i++) {
 			Tag tag = tag_list.get(i);
 			Point point = new Point();
 			Property prop = new Property(AliasUtils.getAliasName(tag), JSONObject.fromObject(point).toString());
-			point_submodel.addSubModelElement(prop);
+			point_submodel.addSubmodelElement(prop);
 			log.debug("Point submodel property added : tag_id=["+tag.getTag_id()+"], alias_name=[" + AliasUtils.getAliasName(tag) +"]");
 		};
-		manager.createSubModel(shell.getIdentification(), point_submodel);
+		manager.createSubmodel(shell.getIdentification(), point_submodel);
 		point_submodel_map.put(point_id.getId(), point_submodel);
 		
 		// 3. 타임라인 서브모델 등록
 		IIdentifier alarm_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".ALARM");
-		SubModel alarm_submodel = new SubModel("ALARM", alarm_id);
+		Submodel alarm_submodel = new Submodel("ALARM", alarm_id);
 		Property alarm_date       = new Property("UPDATE_TIMESTAMP", (new Date()).getTime());
 		Property alarm_json_array = new Property("ARRAY",  (new JSONArray()).toString());
-		alarm_submodel.addSubModelElement(alarm_date);
-		alarm_submodel.addSubModelElement(alarm_json_array);
+		alarm_submodel.addSubmodelElement(alarm_date);
+		alarm_submodel.addSubmodelElement(alarm_json_array);
 		log.debug("Alarm submodel property added : asset_id=[" + passet.getAsset_id() + "]");
-		manager.createSubModel(shell.getIdentification(), alarm_submodel);
+		manager.createSubmodel(shell.getIdentification(), alarm_submodel);
 		alarm_submodel_map.put(alarm_id.getId(), alarm_submodel);
 				
 		// 4. 타임라인 서브모델 등록
 		IIdentifier timeline_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".TIMELINE");
-		SubModel timeline_submodel = new SubModel("TIMELINE", timeline_id);
+		Submodel timeline_submodel = new Submodel("TIMELINE", timeline_id);
 		Property timeline_date       = new Property("UPDATE_TIMESTAMP", (new Date()).getTime());
 		Property timeline_json_array = new Property("ARRAY",  (new JSONArray()).toString());
-		timeline_submodel.addSubModelElement(timeline_date);
-		timeline_submodel.addSubModelElement(timeline_json_array);
+		timeline_submodel.addSubmodelElement(timeline_date);
+		timeline_submodel.addSubmodelElement(timeline_json_array);
 		log.debug("Timeline submodel property added : asset_id=[" + passet.getAsset_id() + "]");
-		manager.createSubModel(shell.getIdentification(), timeline_submodel);
+		manager.createSubmodel(shell.getIdentification(), timeline_submodel);
 		timeline_submodel_map.put(timeline_id.getId(), timeline_submodel);
 
 		//5. 메타데이터 서브모델 등록
 		IIdentifier metadata_id = new CustomId("BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".METADATA");
-		SubModel metadata_submodel = new SubModel("METADATA", metadata_id);
+		Submodel metadata_submodel = new Submodel("METADATA", metadata_id);
 		for(int i=0; i < metadata_list.size(); i++) {
 			Metadata metadata = metadata_list.get(i);
 			Property prop = new Property(metadata.getKey(), metadata.getValue());
-			metadata_submodel.addSubModelElement(prop);
+			metadata_submodel.addSubmodelElement(prop);
 			log.debug("Metadata submodel property added : asset_id=[" + metadata.getObject_id() + "], key=["+ metadata.getKey()+"], value=[" + metadata.getValue() +"]");
 		};
-		manager.createSubModel(shell.getIdentification(), metadata_submodel);
+		manager.createSubmodel(shell.getIdentification(), metadata_submodel);
 		metadata_submodel_map.put(metadata_id.getId(), metadata_submodel);
 		
 		log.info("Asset created : asset_id=["+passet.getAsset_id()+"], tag_size=[" + tag_list.size() +"], metadata_size=[" + metadata_list.size() + "]");
@@ -229,7 +229,7 @@ public class AASServer {
 		}
 		long timestamp = point.getTimestamp();
 		String point_id = "BASYX.SUBMODEL.PLANTPULSE." + tag.getSite_id() + "." + tag.getLinked_asset_id() + ".POINT";
-		SubModel point_submodel = point_submodel_map.get(point_id); //
+		Submodel point_submodel = point_submodel_map.get(point_id); //
 		if(point_submodel != null) {
 			IProperty prop = point_submodel.getProperties().get(AliasUtils.getAliasName(tag));
 			if(prop != null) {
@@ -252,7 +252,7 @@ public class AASServer {
 	public void updateAlarm(plantpulse.domain.Asset passet, long timestamp, JSONArray array) {
 
 		String alarm_id = "BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".ALARM";
-		SubModel alarm_submodel = alarm_submodel_map.get(alarm_id); //
+		Submodel alarm_submodel = alarm_submodel_map.get(alarm_id); //
 		if(alarm_submodel != null) {
 			alarm_submodel.getProperties().get("UPDATE_TIMESTAMP").setValue(timestamp);
 			alarm_submodel.getProperties().get("ARRAY").setValue(array.toString());
@@ -267,7 +267,7 @@ public class AASServer {
 	 */
 	public void updateTimeline(plantpulse.domain.Asset passet, long timestamp, JSONArray array) {
 		String timeline_id = "BASYX.SUBMODEL.PLANTPULSE." + passet.getSite_id() + "." + passet.getAsset_id() + ".TIMELINE";
-		SubModel timeline_submodel = timeline_submodel_map.get(timeline_id); //
+		Submodel timeline_submodel = timeline_submodel_map.get(timeline_id); //
 		if(timeline_submodel != null) {
 			timeline_submodel.getProperties().get("UPDATE_TIMESTAMP").setValue(timestamp);
 			timeline_submodel.getProperties().get("ARRAY").setValue(array.toString());
