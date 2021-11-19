@@ -1,12 +1,12 @@
 {
 	
-	"kafka.host" :"192.168.0.88",
+	"kafka.host" :"domain",
 	"kafka.port" :"9092",
 	"kafka.topic" :"pp-tag-point",
 	"kafka.thread" :"8",
 	"kafka.poll.count" :"1000",
 	
-	"cassandra.host" :"192.168.0.88",
+	"cassandra.host" :"domain",
 	"cassandra.port" : 9042,
 	"cassandra.user" :"cassandra",
 	"cassandra.password" :"cassandra",
@@ -25,7 +25,7 @@
 	"aas.registry.port":"8007",
 
 	"aas.db.driver":"org.hsqldb.jdbc.JDBCDriver",
-	"aas.db.url":"jdbc:hsqldb:hsql://192.168.0.88:9001/pp;shutdown=true;hsqldb.write_delay=false",
+	"aas.db.url":"jdbc:hsqldb:hsql://domain:9001/pp;shutdown=true;hsqldb.write_delay=false",
 	"aas.db.user":"sa",
 	"aas.db.password":"plantpulse"
 	
